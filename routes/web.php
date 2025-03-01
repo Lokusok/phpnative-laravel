@@ -24,7 +24,7 @@ Route::get('/', function () {
     }
 
     return view('welcome', [
-        'users' => User::all(),
+        'users' => User::orderBy('id', 'DESC')->get(),
         'theme' => Settings::get('theme', 'light'),
     ]);
 })->name('welcome');
@@ -43,11 +43,15 @@ Route::post('/users', function (Request $request) {
     return redirect()->route('welcome')->with('success', 'User was successfully created');
 })->name('users.store');
 
-Route::view('/about', 'about')->name('about');
+Route::get('/about', function () {
+    return view('about', [
+        'theme' => Settings::get('theme', 'light'),
+    ]);
+})->name('about');
 
 Route::get('/settings', function () {
     return view('settings', [
-        'theme' => Settings::get('theme'),
+        'theme' => Settings::get('theme', 'light'),
     ]);
 })->name('settings');
 

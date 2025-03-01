@@ -39,7 +39,7 @@
             Settings
         </a>
 
-        <a href="{{ route('reddit') }}">
+        <a href="{{ route('reddit.index') }}">
             Reddit
         </a>
     <hr>
